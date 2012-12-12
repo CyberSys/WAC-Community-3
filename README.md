@@ -15,3 +15,4 @@ In this pack you will find:
 • MV-22 Osprey
 • Bell OH-58D Kiowa
 • UH-1D Huey
+• RAH-66 Comanche
