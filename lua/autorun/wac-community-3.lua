@@ -98,3 +98,19 @@ sound.Add(
 	soundlevel = 50,
 	sound = "WAC/Heli/heli_loop_int.wav"
 })
+
+sound.Add(
+{
+	name = "BD5J.External",
+	channel = CHAN_STATIC,
+	soundlevel = 140,
+	sound = "WAC/bd5j/external.wav"
+})
+
+sound.Add(
+{
+	name = "BD5J.Internal",
+	channel = CHAN_STATIC,
+	soundlevel = 40,
+	sound = "WAC/bd5j/internal.wav"
+})
