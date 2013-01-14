@@ -22,26 +22,27 @@ ENT.Weight		= 300
 ENT.SmokePos		= Vector(-138.73,-1,36.81)
 ENT.FirePos		= Vector(-138.73,-1,36.81)
 
+
 ENT.EngineWeight = {
 	Weight = 50,
-	Position = Vector(-100,0,0)
+	Position = Vector(100,0,0)
 }
 
 
 ENT.WheelInfo={
     {
         mdl="models/drmatt/bd5/wheel.mdl",
-        pos=Vector(117.12,-0.69,-45.6),
+        pos=Vector(105,-5,-45.6),
         friction=1,
         mass=40,
     },
     {	mdl="models/drmatt/bd5/wheel.mdl",
-        pos=Vector(0.34,-55.12,-38.44),
+        pos=Vector(-12,-57,-39),
         friction=1,
         mass=40,
     },
     {	mdl="models/drmatt/bd5/wheel.mdl",
-        pos=Vector(3.81,55.43,-38.62),
+        pos=Vector(-9,50,-39),
         friction=1,
         mass=40,
     },
@@ -51,8 +52,8 @@ ENT.WheelInfo={
 function ENT:AddSeatTable()
     return{
         [1]={
-			Pos=Vector(20,0,-5),
-            ExitPos=Vector(62.11,49.27,-40),
+			Pos=Vector(10,-5,-5),
+            ExitPos=Vector(62,49,-40),
 			NoHud=true,
             wep={wac.aircraft.getWeapon("No Weapon")},
         },
