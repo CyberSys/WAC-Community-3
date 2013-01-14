@@ -13,10 +13,10 @@ ENT.Instructions 		= ""
 ENT.Spawnable			= true
 ENT.AdminSpawnable		= true
 
-ENT.Model			= "models/BF2/Kiowa/body.mdl"
+ENT.Model			= "models/bf2/kiowa/body.mdl"
 ENT.RotorPhModel	= "models/props_junk/sawblade001a.mdl"
-ENT.RotorModel		= "models/BF2/Kiowa/rotor.mdl"
-ENT.BackRotorModel	= "models/BF2/Kiowa/tailrotor.mdl"
+ENT.RotorModel		= "models/bf2/kiowa/rotor.mdl"
+ENT.BackRotorModel	= "models/bf2/kiowa/tailrotor.mdl"
 ENT.TopRotorDir		= 1
 ENT.BackRotorDir	= -1
 ENT.TopRotorPos	= Vector(-35.5,2,96)
