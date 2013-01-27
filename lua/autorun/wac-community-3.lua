@@ -114,3 +114,19 @@ sound.Add(
 	soundlevel = 40,
 	sound = "WAC/bd5j/internal.wav"
 })
+
+sound.Add(
+{
+	name = "KA50.External",
+	channel = CHAN_STATIC,
+	soundlevel = 120,
+	sound = "WAC/KA-50/external.wav"
+})
+
+sound.Add(
+{
+	name = "KA50.Internal",
+	channel = CHAN_STATIC,
+	soundlevel = 60,
+	sound = "WAC/KA-50/internal.wav"
+})

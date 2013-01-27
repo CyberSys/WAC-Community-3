@@ -17,3 +17,4 @@ In this pack you will find:
 • UH-1D Huey
 • RAH-66 Comanche
 • BD-5J MicroJet
+• KA-50 BlackShark
