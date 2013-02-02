@@ -1,3 +1,4 @@
+if not wac then return end
 
 include("shared.lua")
 
