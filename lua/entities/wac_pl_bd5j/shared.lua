@@ -17,6 +17,7 @@ ENT.RotorPhModel	= "models/props_junk/sawblade001a.mdl"
 ENT.TopRotorDir        = 1
 ENT.TopRotorPos	= Vector(70, 0, 10)
 ENT.BackRotorPos	= Vector(8, 0, -48)
+ENT.AngBrakeMul	= 0.03
 ENT.EngineForce	= 350
 ENT.Weight		= 300
 ENT.SmokePos		= Vector(-138.73,-1,36.81)
@@ -24,7 +25,7 @@ ENT.FirePos		= Vector(-138.73,-1,36.81)
 
 
 ENT.EngineWeight = {
-	Weight = 50,
+	Weight = 100,
 	Position = Vector(100,0,0)
 }
 
