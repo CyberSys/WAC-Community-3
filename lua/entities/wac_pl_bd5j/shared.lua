@@ -3,7 +3,7 @@ if not wac then return end
 ENT.Base 				= "wac_pl_base"
 ENT.Type 				= "anim"
 
-ENT.PrintName			= "BD-5J MicroJet"
+ENT.PrintName			= "BD-5J Micro Jet"
 ENT.Author				= "Dr. Matt"
 ENT.Category			= wac.aircraft.spawnCategory
 ENT.Contact    			= ""
@@ -17,18 +17,15 @@ ENT.RotorPhModel	= "models/props_junk/sawblade001a.mdl"
 ENT.TopRotorDir        = 1
 ENT.TopRotorPos	= Vector(70, 0, 10)
 ENT.BackRotorPos	= Vector(8, 0, -48)
-ENT.AngBrakeMul	= 0.03
 ENT.EngineForce	= 350
 ENT.Weight		= 300
 ENT.SmokePos		= Vector(-138.73,-1,36.81)
 ENT.FirePos		= Vector(-138.73,-1,36.81)
 
-
 ENT.EngineWeight = {
 	Weight = 100,
 	Position = Vector(100,0,0)
 }
-
 
 ENT.WheelInfo={
     {
@@ -48,7 +45,6 @@ ENT.WheelInfo={
         mass=40,
     },
 }
-
 
 function ENT:AddSeatTable()
     return{
