@@ -14,20 +14,45 @@ function ENT:SpawnFunction(ply, tr)
 	return ent
 end
 
-function ENT:CustomPhysicsUpdate(ph)	
-	if self.rotorRpm > 0.4 and self.rotorRpm < 0.59 and self.TopRotorModel:IsValid() then
-		self.TopRotorModel:SetBodygroup(1,1)
+function ENT:CustomPhysicsUpdate(ph)
+	if IsValid(self.TopRotorModel) then
+		if self.rotorRpm > 0.4 and self.rotorRpm < 0.59 then
+			self.TopRotorModel:SetBodygroup(1,1)
+		end
+		if self.rotorRpm > 0.6 and self.rotorRpm < 0.79 then
+			self.TopRotorModel:SetBodygroup(1,2)
+		end
+		if self.rotorRpm > 0.8 and self.rotorRpm < 0.89 then
+			self.TopRotorModel:SetBodygroup(1,3)
+		end
+		if self.rotorRpm > 0.9 then
+			self.TopRotorModel:SetBodygroup(1,4)
+		end
+		if self.rotorRpm < 0.4 then
+			self.TopRotorModel:SetBodygroup(1,0)
+		end
 	end
-	if self.rotorRpm > 0.6 and self.rotorRpm < 0.79 and self.TopRotorModel:IsValid() then
-		self.TopRotorModel:SetBodygroup(1,2)
+	
+	local phys=self:GetPhysicsObject()
+	if IsValid(phys) and not self.disabled then
+		if phys:GetVelocity():Length() > 850 then
+			self:SetBodygroup(2,1)
+		else
+			self:SetBodygroup(2,0)
+		end
 	end
-	if self.rotorRpm > 0.8 and self.rotorRpm < 0.89 and self.TopRotorModel:IsValid() then
-		self.TopRotorModel:SetBodygroup(1,3)
-	end
-	if self.rotorRpm > 0.9 and self.TopRotorModel:IsValid() then
-		self.TopRotorModel:SetBodygroup(1,4)
-	end
-	if self.rotorRpm < 0.4 and self.TopRotorModel:IsValid() then
-		self.TopRotorModel:SetBodygroup(1,0)
+	
+	if self.disabled and not self.backgib then
+		self:KillBackRotor()
+		self:SetBodygroup(1,1)
+		self.backgib = ents.Create("prop_physics")
+		self.backgib:SetModel("models/sentry/uh-1d_tail.mdl")
+		self.backgib:SetSkin(self:GetSkin())
+		self.backgib:SetPos(self:GetPos())
+		self.backgib:SetAngles(self:GetAngles())
+		self.backgib:Spawn()
+		self.backgib:Activate()
+		constraint.NoCollide(self, self.backgib, 0, 0)
+		self:AddOnRemove(self.backgib)
 	end
 end
