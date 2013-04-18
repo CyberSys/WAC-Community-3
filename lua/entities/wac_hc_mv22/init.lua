@@ -2,6 +2,7 @@
 include("shared.lua")
 AddCSLuaFile("cl_init.lua")
 AddCSLuaFile("shared.lua")
+
 ENT.WheelInfo={
 	{
 		mdl="models/BF2/helicopters/Mil Mi-28/mi28_w1.mdl",
@@ -40,6 +41,7 @@ ENT.WheelInfo={
 		mass=250
 	},
 }
+
 function ENT:SpawnFunction(ply, tr)
 	if (!tr.Hit) then return end
 	local ent=ents.Create(ClassName)
@@ -50,6 +52,7 @@ function ENT:SpawnFunction(ply, tr)
 	self.Sounds=table.Copy(sndt)
 	return ent
 end
+
 function ENT:AddStuff()
 	local ang=self:GetAngles()
 	local e1=ents.Create("prop_physics")
@@ -57,7 +60,6 @@ function ENT:AddStuff()
 	e1:SetModel("models/sentry/osprey_gun1.mdl")
 	e1:SetPos(self:LocalToWorld(Vector(-15,0,25)))
 	e1:SetAngles(ang)
-	e1:SetSkin(Skin)
 	e1:Spawn()
 	e1:Activate()
 	local ph=e1:GetPhysicsObject()
@@ -76,7 +78,6 @@ function ENT:AddStuff()
 	e2:SetModel("models/sentry/osprey_gun2.mdl")
 	e2:SetPos(self:LocalToWorld(Vector(-15,10,18)))
 	e2:SetAngles(ang)
-	e2:SetSkin(Skin)
 	e2:Spawn()
 	e2:Activate()
 	local ph=e2:GetPhysicsObject()
@@ -95,7 +96,6 @@ function ENT:AddStuff()
 	e3:SetModel("models/sentry/osprey_barrel.mdl")
 	e3:SetPos(e2:LocalToWorld(Vector(0,0,0)))
 	e3:SetAngles(ang)
-	e3:SetSkin(Skin)
 	e3:Spawn()
 	e3:Activate()
 	local ph=e3:GetPhysicsObject()
@@ -116,7 +116,6 @@ function ENT:AddStuff()
 	e4:SetPos(self:LocalToWorld(Vector(60,0,10)))
 	e4:SetAngles(ang)
 	e4:SetRenderMode(RENDERMODE_NONE)
-	e4:SetSkin(Skin)
 	e4:Spawn()
 	e4:Activate()
 	local ph=e4:GetPhysicsObject()
@@ -135,7 +134,6 @@ function ENT:AddStuff()
 	e5:SetModel("models/BF2/helicopters/AH-1 Cobra/ah1z_radar1.mdl")
 	e5:SetPos(self:LocalToWorld(Vector(60,0,10)))
 	e5:SetAngles(ang)
-	e5:SetSkin(Skin)
 	e5:Spawn()
 	e5:SetRenderMode(RENDERMODE_NONE)
 	e5:Activate()
@@ -174,7 +172,5 @@ function ENT:CustomPhysicsUpdate(ph)
 		
 		local ph5=self.Gun:GetPhysicsObject()
 		ph5:AddAngleVelocity(ph5:GetAngleVelocity()*-0.03)
-
 	end
-
 end
