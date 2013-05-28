@@ -15,7 +15,7 @@ ENT.AdminSpawnable	= true
 ENT.Model			= "models/drmatt/bd5/body.mdl"
 ENT.RotorPhModel	= "models/props_junk/sawblade001a.mdl"
 ENT.TopRotorDir        = 1
-ENT.TopRotorPos	= Vector(70, 0, 10)
+ENT.rotorPos	= Vector(70, 0, 10)
 ENT.BackRotorPos	= Vector(8, 0, -48)
 ENT.EngineForce	= 350
 ENT.Weight		= 300
@@ -27,7 +27,7 @@ ENT.EngineWeight = {
 	Position = Vector(100,0,0)
 }
 
-ENT.WheelInfo={
+ENT.Wheels={
     {
         mdl="models/drmatt/bd5/wheel.mdl",
         pos=Vector(105,-5,-45.6),
@@ -46,26 +46,22 @@ ENT.WheelInfo={
     },
 }
 
-function ENT:AddSeatTable()
-    return{
-        [1]={
-			Pos=Vector(10,-5,-5),
-            ExitPos=Vector(62,49,-40),
-			NoHud=true,
-            wep={wac.aircraft.getWeapon("No Weapon")},
-        },
-    }
-end
+ENT.Seats = {
+	{
+		pos=Vector(10,-5,-5),
+		exit=Vector(62,49,-40),
+	},
+}
 
-function ENT:AddSounds()
-	self.Sound={
-		Start=CreateSound(self.Entity,"WAC/bd5j/start.wav"),
-		Blades=CreateSound(self.Entity,"BD5J.External"),
-		Engine=CreateSound(self.Entity,"BD5J.Internal"),
-		MissileAlert=CreateSound(self.Entity,"HelicopterVehicle/MissileNearby.mp3"),
-		MissileShoot=CreateSound(self.Entity,"HelicopterVehicle/MissileShoot.mp3"),
-		MinorAlarm=CreateSound(self.Entity,"HelicopterVehicle/MinorAlarm.mp3"),
-		LowHealth=CreateSound(self.Entity,"HelicopterVehicle/LowHealth.mp3"),
-		CrashAlarm=CreateSound(self.Entity,"HelicopterVehicle/CrashAlarm.mp3"),
-	}
-end
+ENT.Sounds={
+	Start="WAC/bd5j/start.wav",
+	Blades="WAC/bd5j/external.wav",
+	Engine="WAC/bd5j/internal.wav",
+	MissileAlert="HelicopterVehicle/MissileNearby.mp3",
+	MissileShoot="HelicopterVehicle/MissileShoot.mp3",
+	MinorAlarm="HelicopterVehicle/MinorAlarm.mp3",
+	LowHealth="HelicopterVehicle/LowHealth.mp3",
+	CrashAlarm="HelicopterVehicle/CrashAlarm.mp3"
+}
+
+function ENT:DrawWeaponSelection() end

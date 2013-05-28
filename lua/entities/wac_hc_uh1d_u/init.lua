@@ -10,11 +10,12 @@ function ENT:SpawnFunction(ply, tr)
 	ent:Activate()
 	ent.Owner=ply
 	ent:SetSkin(math.random(0,3))
-	self.Sounds=table.Copy(sndt)
 	return ent
 end
 
-function ENT:CustomPhysicsUpdate(ph)
+function ENT:PhysicsUpdate(ph)
+	self:base("wac_hc_base").PhysicsUpdate(self,ph)
+	
 	if IsValid(self.TopRotorModel) then
 		if self.rotorRpm > 0.4 and self.rotorRpm < 0.59 then
 			self.TopRotorModel:SetBodygroup(1,1)

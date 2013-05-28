@@ -31,5 +31,9 @@ ENT.Aerodynamics = {
 		Right = Vector(0, 0, 0),
 		Top = Vector(0, 0, -0.5)
 	},
-	Rail = Vector(1, 5, 20)
+	Rail = Vector(1, 5, 20),
+	Drag = {
+		Directional = Vector(0.01, 0.01, 0.01),
+		Angular = Vector(0.01, 0.01, 0.01)
+	}
 }

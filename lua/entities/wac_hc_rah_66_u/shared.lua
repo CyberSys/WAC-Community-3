@@ -20,43 +20,96 @@ ENT.BackRotorPos	= Vector(-300,0,1)
 ENT.BackRotorDir	= 1
 ENT.SmokePos		= Vector(-33,-2,65)
 ENT.FirePos			= Vector(-33,-2,65)
-ENT.ThirdPDist		= 500
 
-function ENT:AddSeatTable()
-	return{
-		[1]={
-			Pos=Vector(60, -1.5, -15),
-			ExitPos=Vector(60,60,-40),
-			wep={
-				[1] = wac.aircraft.getWeapon("Hydra 70",{
-					ShootPos = {
-						[1]=Vector(-12,42,-14),
-						[2]=Vector(40.25,-46,-14),
-					}
-				}),
-			},
-		},
-		[2]={
-			Pos=Vector(10, -1.5, -10),
-			ExitPos=Vector(10,60,-40),
-			wep={
-				[1] = wac.aircraft.getWeapon("No Weapon"),
-				[2] = wac.aircraft.getWeapon("M197"),
-				[3] = wac.aircraft.getWeapon("Hellfire"),
-			},
-		},
-	}
-end
+ENT.Seats = {
+	{
+		pos=Vector(60, -1.5, -15),
+		exit=Vector(60,60,-40),
+		weapons={"Hydra 70"}
+	},
+	{
+		pos=Vector(10, -1.5, -10),
+		exit=Vector(10,60,-40),
+		weapons={"M197", "Hellfire"}
+	},
+}
 
-function ENT:AddSounds()
-	self.Sound={
-		Start=CreateSound(self.Entity,"WAC/Heli/h6_start.wav"),
-		Blades=CreateSound(self.Entity,"RAH66.External"),
-		Engine=CreateSound(self.Entity,"RAH66.Internal"),
-		MissileAlert=CreateSound(self.Entity,"HelicopterVehicle/MissileNearby.mp3"),
-		MissileShoot=CreateSound(self.Entity,"HelicopterVehicle/MissileShoot.mp3"),
-		MinorAlarm=CreateSound(self.Entity,"HelicopterVehicle/MinorAlarm.mp3"),
-		LowHealth=CreateSound(self.Entity,"HelicopterVehicle/LowHealth.mp3"),
-		CrashAlarm=CreateSound(self.Entity,"HelicopterVehicle/CrashAlarm.mp3"),
-	}
-end
+ENT.Weapons = {
+	["Hydra 70"] = {
+		class = "wac_pod_hydra",
+		info = {
+			Sequential = false,
+			Pods = {
+				Vector(-12,42,-14),
+				Vector(40.25,-46,-14),
+			}
+		}
+	},
+	["Hellfire"] = {
+		class = "wac_pod_hellfire",
+		info = {
+			Pods = {
+				Vector(50, 60, 40),
+				Vector(50, -60, 40),
+			}
+		}
+	},
+	["M197"] = {
+		class = "wac_pod_aimedgun",
+		info = {
+			ShootPos = Vector(112,0,-40),
+			ShootOffset = Vector(60, 0, 0),
+		}
+	},
+}
+
+
+ENT.Camera = {
+	model = "models/BF2/helicopters/AH-1 Cobra/ah1z_radar1.mdl",
+	pos = Vector(90,0,-50),
+	offset = Vector(-1,0,0),
+	viewPos = Vector(2, 0, 3.5),
+	maxAng = Angle(45, 90, 0),
+	minAng = Angle(-2, -90, 0),
+	seat = 2
+}
+
+
+ENT.WeaponAttachments = {
+
+	gunMount1 = {
+		model = "models/drmatt/rah66/gunmount.mdl",
+		pos = Vector(112,0,-33),
+		restrictPitch = true
+	},
+	
+	gunMount2 = {
+		model = "models/BF2/helicopters/AH-1 Cobra/ah1z_g2.mdl",
+		pos = Vector(112,0,-40),
+		offset = Vector(2,0,0)
+	},
+
+	gun = {
+		model = "models/BF2/helicopters/AH-1 Cobra/ah1z_g.mdl",
+		pos = Vector(112,0,-40),
+		offset = Vector(2,0,0)
+	},
+	
+	radar1 = {
+		model = "models/BF2/helicopters/AH-1 Cobra/ah1z_radar2.mdl",
+		pos = Vector(90,0,-40),
+		restrictPitch = true
+	},
+
+}
+
+ENT.Sounds={
+	Start="WAC/Heli/h6_start.wav",
+	Blades="WAC/rah66/external.wav",
+	Engine="WAC/Heli/heli_loop_int.wav",
+	MissileAlert="HelicopterVehicle/MissileNearby.mp3",
+	MissileShoot="HelicopterVehicle/MissileShoot.mp3",
+	MinorAlarm="HelicopterVehicle/MinorAlarm.mp3",
+	LowHealth="HelicopterVehicle/LowHealth.mp3",
+	CrashAlarm="HelicopterVehicle/CrashAlarm.mp3"
+}

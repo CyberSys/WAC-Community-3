@@ -26,53 +26,38 @@ ENT.Weight		= 9200
 ENT.SmokePos	= Vector(-85,0,102)
 ENT.FirePos		= Vector(-85,0,102)
 
-function ENT:AddSeatTable()
-	return{
-		[1]={
-			Pos=Vector(95,-24.5,47),
-			ExitPos=Vector(100,-120,10),
-			Ang=Angle(0,0,0),
-			NoHud=true,
-			wep={wac.aircraft.getWeapon("No Weapon")},
-		},
-		[2]={
-			Pos=Vector(95, 24.5, 47),
-			ExitPos=Vector(100,120,10),
-			Ang=Angle(0,0,0),
-			NoHud=true,
-			wep={wac.aircraft.getWeapon("No Weapon")},
-		},
-		[3]={
-			Pos=Vector(18,-24.5,47),
-			ExitPos=Vector(20,-120,10),
-			NoHud=true,
-			wep={wac.aircraft.getWeapon("No Weapon")},
-		},
-		[4]={
-			Pos=Vector(18,0,47),
-			ExitPos=Vector(40,-120,10),
-			NoHud=true,
-			wep={wac.aircraft.getWeapon("No Weapon")},
-		},
-		[5]={
-			Pos=Vector(18, 24.5, 47),
-			ExitPos=Vector(20,120,10),
-			NoHud=true,
-			wep={wac.aircraft.getWeapon("No Weapon")},
-		},
+ENT.Seats = {
+	{
+		pos=Vector(95,-24.5,47),
+		exit=Vector(100,-120,10),
+	},
+	{
+		pos=Vector(95, 24.5, 47),
+		exit=Vector(100,120,10),
+	},
+	{
+		pos=Vector(18,-24.5,47),
+		exit=Vector(20,-120,10),
+	},
+	{
+		pos=Vector(18,0,47),
+		exit=Vector(40,-120,10),
+	},
+	{
+		pos=Vector(18, 24.5, 47),
+		exit=Vector(20,120,10),
+	},
+}
 
-	}
-end
+ENT.Sounds = {
+	Start="WAC/uh1d/start.wav",
+	Blades="WAC/uh1d/external.wav",
+	Engine="WAC/uh1d/internal.wav",
+	MissileAlert="HelicopterVehicle/MissileNearby.mp3",
+	MissileShoot="ah64d/rocket_fire.wav",
+	MinorAlarm="WAC/Heli/fire_alarm_tank.wav",
+	LowHealth="WAC/Heli/fire_alarm.wav",
+	CrashAlarm="WAC/Heli/FireSmoke.wav"
+}
 
-function ENT:AddSounds()
-	self.Sound={
-		Start=CreateSound(self.Entity, "WAC/uh1d/start.wav"),
-		Blades=CreateSound(self.Entity, "UH1D.External"),
-		Engine=CreateSound(self.Entity, "UH1D.Internal"),
-		MissileAlert=CreateSound(self.Entity, "HelicopterVehicle/MissileNearby.mp3"),
-		MissileShoot=CreateSound(self.Entity, "ah64d/rocket_fire.wav"),
-		MinorAlarm=CreateSound(self.Entity, "WAC/Heli/fire_alarm_tank.wav"),
-		LowHealth=CreateSound(self.Entity, "WAC/Heli/fire_alarm.wav"),
-		CrashAlarm=CreateSound(self.Entity, "WAC/Heli/FireSmoke.wav"),
-	}
-end
+function ENT:DrawWeaponSelection() end
