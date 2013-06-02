@@ -38,7 +38,7 @@ ENT.Weapons = {
 	["Hydra 70"] = {
 		class = "wac_pod_hydra",
 		info = {
-			Sequential = false,
+			Sequential = true,
 			Pods = {
 				Vector(-12,42,-14),
 				Vector(40.25,-46,-14),
@@ -65,10 +65,10 @@ ENT.Weapons = {
 
 
 ENT.Camera = {
-	model = "models/BF2/helicopters/AH-1 Cobra/ah1z_radar1.mdl",
-	pos = Vector(90,0,-50),
+	model = "models/props_junk/PopCan01a.mdl",
+	pos = Vector(110,0,-20),
 	offset = Vector(-1,0,0),
-	viewPos = Vector(2, 0, 3.5),
+	viewPos = Vector(2, 0, -35),
 	maxAng = Angle(45, 90, 0),
 	minAng = Angle(-2, -90, 0),
 	seat = 2
@@ -93,12 +93,6 @@ ENT.WeaponAttachments = {
 		model = "models/BF2/helicopters/AH-1 Cobra/ah1z_g.mdl",
 		pos = Vector(112,0,-40),
 		offset = Vector(2,0,0)
-	},
-	
-	radar1 = {
-		model = "models/BF2/helicopters/AH-1 Cobra/ah1z_radar2.mdl",
-		pos = Vector(90,0,-40),
-		restrictPitch = true
 	},
 
 }

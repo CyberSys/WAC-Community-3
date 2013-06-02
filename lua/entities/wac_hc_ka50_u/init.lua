@@ -1,4 +1,3 @@
-
 include("shared.lua")
 AddCSLuaFile("cl_init.lua")
 AddCSLuaFile("shared.lua")
@@ -9,47 +8,31 @@ function ENT:SpawnFunction(ply, tr)
 	ent:SetPos(tr.HitPos+tr.HitNormal*10)
 	ent:Spawn()
 	ent:Activate()
+	ent:SetSkin(math.random(0,1))
 	ent.Owner=ply
 	return ent
 end
 
 ENT.Wheels={
 	{
-		mdl="models/BF2/helicopters/Mil Mi-28/mi28_w1.mdl",
-		pos=Vector(-98,-66,5),
+		mdl="models/sentry/ka-50_fwheel.mdl",
+		pos=Vector(163,0,4),
 		friction=100,
 		mass=250,
 	},
 	{
-		mdl="models/BF2/helicopters/Mil Mi-28/mi28_w1.mdl",
-		pos=Vector(-98,-79,5),
+		mdl="models/sentry/ka-50_bwheel.mdl",
+		pos=Vector(-25.5,-56,10),
 		friction=100,
-		mass=250
+		mass=550
 	},
 	{
-		mdl="models/BF2/helicopters/Mil Mi-28/mi28_w1.mdl",
-		pos=Vector(-98,66,5),
+		mdl="models/sentry/ka-50_bwheel.mdl",
+		pos=Vector(-25.5,56,10),
 		friction=100,
-		mass=250,
+		mass=550,
 	},
-	{
-		mdl="models/BF2/helicopters/Mil Mi-28/mi28_w1.mdl",
-		pos=Vector(-98,79,5),
-		friction=100,
-		mass=250
-	},
-	{
-		mdl="models/BF2/helicopters/Mil Mi-28/mi28_w1.mdl",
-		pos=Vector(225,-6,5),
-		friction=100,
-		mass=250
-	},
-	{
-		mdl="models/BF2/helicopters/Mil Mi-28/mi28_w1.mdl",
-		pos=Vector(225,6,5),
-		friction=100,
-		mass=250
-	},
+
 }
 
 function ENT:addRotors()
@@ -135,4 +118,47 @@ function ENT:PhysicsUpdate(ph)
 			rotor.phys:AddAngleVelocity(rotor.targetAngVel)
 		end
 	end
+	
+	if self.rotorRpm > 0.6 and self.rotorRpm < 0.79 and IsValid(self.TopRotorModel) then
+		self.TopRotorModel:SetBodygroup(1,1)
+	elseif self.rotorRpm > 0.8 and IsValid(self.TopRotorModel) then
+		self.TopRotorModel:SetBodygroup(1,2)
+	elseif self.rotorRpm < 0.4 and IsValid(self.TopRotorModel) then
+		self.TopRotorModel:SetBodygroup(1,0)
+	end
+
+	if self.rotorRpm > 0.6 and self.rotorRpm < 0.79 and IsValid(self.TopRotorModel2) then
+		self.TopRotorModel2:SetBodygroup(1,1)
+	elseif self.rotorRpm > 0.8 and IsValid(self.TopRotorModel2) then
+		self.TopRotorModel2:SetBodygroup(1,2)
+	elseif self.rotorRpm < 0.4 and IsValid(self.TopRotorModel2) then
+		self.TopRotorModel2:SetBodygroup(1,0)
+	end
+end
+
+function ENT:KillTopRotor()
+	self:base("wac_hc_base").KillTopRotor(self)
+	
+	if !self.TopRotor2 then return end
+	local e = self:addEntity("prop_physics")
+	e:SetPos(self.TopRotor2:GetPos())
+	e:SetAngles(self.TopRotor2:GetAngles())
+	e:SetModel(self.RotorModel2)
+	e:SetSkin(self.TopRotorModel2:GetSkin())
+	e:Spawn()
+	local ph = e:GetPhysicsObject()
+	e.wac_ignore=true
+	if ph:IsValid() then
+		ph:SetMass(1000)
+		ph:EnableDrag(false)
+		ph:AddAngleVelocity(self.TopRotor2.Phys:GetAngleVelocity())
+		ph:SetVelocity(self.TopRotor2.Phys:GetAngleVelocity():Length()*self.TopRotor2:GetUp()*0.5 + self.TopRotor2:GetVelocity())
+	end
+	self.TopRotor2:Remove()
+	self.TopRotor2 = nil
+	e:SetNotSolid(true)
+	timer.Simple(15, function()
+		if !e or !e:IsValid() then return end
+		e:Remove()
+	end)
 end
