@@ -27,6 +27,10 @@ ENT.EngineWeight = {
 	Position = Vector(100,0,0)
 }
 
+ENT.Agility = {
+	Thrust = 15
+}
+
 ENT.Wheels={
     {
         mdl="models/drmatt/bd5/wheel.mdl",
