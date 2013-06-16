@@ -133,7 +133,7 @@ end
 function ENT:SpawnFunction(ply, tr)
 	if (!tr.Hit) then return end
 	local ent=ents.Create(ClassName)
-	ent:SetPos(tr.HitPos+tr.HitNormal*10)
+	ent:SetPos(tr.HitPos+tr.HitNormal)
 	ent.Owner=ply
 	ent:Spawn()
 	ent:Activate()

@@ -68,4 +68,24 @@ ENT.Sounds={
 	CrashAlarm="HelicopterVehicle/CrashAlarm.mp3"
 }
 
+// heatwave
+if CLIENT then
+	local cureffect=0
+	function ENT:Think()
+		self:base("wac_pl_base").Think(self)
+		local throttle = self:GetNWFloat("up", 0)
+		local active = self:GetNWBool("active", false)
+		local ent=LocalPlayer():GetVehicle():GetNWEntity("wac_aircraft")
+		if ent==self and active and throttle > 0.2 and CurTime()>cureffect then
+			cureffect=CurTime()+0.02
+			local ed=EffectData()
+			ed:SetEntity(self)
+			ed:SetOrigin(Vector(-165,-5,36.81)) // offset
+			ed:SetRadius(10)
+			ed:SetMagnitude(throttle)
+			util.Effect("wac_heatwave", ed)
+		end
+	end
+end
+
 function ENT:DrawWeaponSelection() end
