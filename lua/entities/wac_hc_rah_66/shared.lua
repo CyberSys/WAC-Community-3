@@ -6,20 +6,23 @@ ENT.Author = "Dr. Matt"
 ENT.Category = wac.aircraft.spawnCategory
 ENT.Spawnable = true
 ENT.AdminSpawnable = true
-
 ENT.PrintName		= "RAH-66 Comanche"
 
 ENT.Model			= "models/drmatt/rah66/body.mdl"
-ENT.RotorPhModel	= "models/props_junk/sawblade001a.mdl"
-ENT.RotorModel		= "models/drmatt/rah66/mainrotor.mdl"
-ENT.BackRotorModel	= "models/drmatt/rah66/tailrotor.mdl"
-
-ENT.TopRotorPos		= Vector(-33,-2,60)
-ENT.TopRotorDir		= 1
-ENT.BackRotorPos	= Vector(-300,0,1)
-ENT.BackRotorDir	= 1
 ENT.SmokePos		= Vector(-33,-2,65)
 ENT.FirePos			= Vector(-33,-2,65)
+
+ENT.TopRotor = {
+	dir = -1,
+	pos = Vector(-33,-2,60),
+	model = "models/drmatt/rah66/mainrotor.mdl"
+}
+
+ENT.BackRotor = {
+	dir = -1,
+	pos = Vector(-300,0,1),
+	model = "models/drmatt/rah66/tailrotor.mdl"
+}
 
 ENT.Seats = {
 	{

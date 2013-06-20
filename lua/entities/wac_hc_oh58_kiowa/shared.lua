@@ -3,30 +3,28 @@ if not wac then return end
 ENT.Base 				= "wac_hc_base"
 ENT.Type 				= "anim"
 ENT.Category			= wac.aircraft.spawnCategory
-
 ENT.PrintName			= "Bell OH-58D Kiowa"
 ENT.Author				= "}{ornet/Vest"
-
-ENT.Contact    			= ""
-ENT.Purpose 			= ""
-ENT.Instructions 		= ""
 ENT.Spawnable			= true
 ENT.AdminSpawnable		= true
 
 ENT.Model			= "models/bf2/kiowa/body.mdl"
-ENT.RotorPhModel	= "models/props_junk/sawblade001a.mdl"
-ENT.RotorModel		= "models/bf2/kiowa/rotor.mdl"
-ENT.BackRotorModel	= "models/bf2/kiowa/tailrotor.mdl"
-ENT.TopRotorDir		= 1
-ENT.BackRotorDir	= -1
-ENT.TopRotorPos	= Vector(-35.5,2,96)
-ENT.BackRotorPos	= Vector(-292.5,4,73.6)
-ENT.RotorWidth		= 190
 ENT.EngineForce	= 34
 ENT.Weight			= 2300
-ENT.SeatSwitcherPos	= Vector(0,0,0)
 ENT.SmokePos		= Vector(-90,0,95)
 ENT.FirePos		= Vector(-90,0,95)
+
+ENT.TopRotor = {
+	dir = -1,
+	pos = Vector(-35.5,2,96),
+	model = "models/bf2/kiowa/rotor.mdl"
+}
+
+ENT.BackRotor = {
+	dir = -1,
+	pos = Vector(-292.5,4,73.6),
+	model = "models/bf2/kiowa/tailrotor.mdl"
+}
 
 ENT.Seats = {
 	{

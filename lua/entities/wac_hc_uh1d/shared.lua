@@ -2,29 +2,29 @@ if not wac then return end
 
 ENT.Base 				= "wac_hc_base"
 ENT.Type 				= "anim"
-
 ENT.PrintName			= "UH-1D Huey"
 ENT.Author				= "SentryGunMan"
 ENT.Category			= wac.aircraft.spawnCategory
-ENT.Contact    			= ""
-ENT.Purpose 			= ""
-ENT.Instructions 		= ""
 ENT.Spawnable			= true
 ENT.AdminSpawnable	= true
 
 ENT.Model			= "models/sentry/uh-1d.mdl"
-ENT.RotorPhModel	= "models/props_junk/sawblade001a.mdl"
-ENT.RotorModel		= "models/sentry/uh-1d_tr.mdl"
-ENT.BackRotorModel	= "models/sentry/uh-1d_rr.mdl"
-
-ENT.BackRotorDir	= -1
-ENT.TopRotorPos	= Vector(2,0,142)
-ENT.BackRotorPos	= Vector(-335,6,156)
 ENT.EngineForce	= 30
 ENT.Weight		= 9200
-
 ENT.SmokePos	= Vector(-85,0,102)
 ENT.FirePos		= Vector(-85,0,102)
+
+ENT.TopRotor = {
+	dir = -1,
+	pos = Vector(2,0,142),
+	model = "models/sentry/uh-1d_tr.mdl"
+}
+
+ENT.BackRotor = {
+	dir = -1,
+	pos = Vector(-335,6,156),
+	model = "models/sentry/uh-1d_rr.mdl"
+}
 
 ENT.Seats = {
 	{

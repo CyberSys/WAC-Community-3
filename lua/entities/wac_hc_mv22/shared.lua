@@ -2,32 +2,36 @@ if not wac then return end
 
 ENT.Base 				= "wac_hc_base"
 ENT.Type 				= "anim"
-
 ENT.PrintName			= "MV-22 Osprey"
 ENT.Author				= "SentryGunMan"
 ENT.Category			= wac.aircraft.spawnCategory
-ENT.Contact    			= ""
-ENT.Purpose 			= ""
-ENT.Instructions 		= ""
 ENT.Spawnable			= true
 ENT.AdminSpawnable	= true
 
 ENT.Model			= "models/sentry/osprey.mdl"
-ENT.RotorPhModel	= "models/props_junk/sawblade001a.mdl"
-ENT.UsePhysRotor2	= true
-ENT.RotorModel		= "models/sentry/osprey_prop.mdl"
-ENT.RotorModel2		= "models/sentry/osprey_prop.mdl"
-ENT.BackRotorModel	= "models/props_junk/PopCan01a.mdl"
-ENT.TopRotorDir        = 1
-ENT.TopRotorDir2        = -1
-ENT.BackRotorDir	= 1
-ENT.TopRotorPos	= Vector(9,278.5,236)
-ENT.TopRotorPos2 = Vector(9,-278.5,236)
-ENT.BackRotorPos = Vector(0,0,38)
 ENT.EngineForce	= 26
 ENT.Weight		= 47500
 ENT.SmokePos		= Vector(30,0,130)
 ENT.FirePos		= Vector(30,280,60)
+
+ENT.TopRotor = {
+	dir = -1,
+	pos = Vector(9,278.5,236),
+	model = "models/sentry/osprey_prop.mdl"
+}
+
+ENT.TopRotor2 = {
+	dir = 1,
+	pos = Vector(9,-278.5,236),
+	angles = Angle(0,0,0),
+	model = "models/sentry/osprey_prop.mdl"
+}
+
+ENT.BackRotor = {
+	dir = 1,
+	pos = Vector(0,0,38),
+	model = "models/props_junk/PopCan01a.mdl"
+}
 
 ENT.Seats = {
 	{
