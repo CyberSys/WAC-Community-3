@@ -71,8 +71,8 @@ function ENT:addRotors()
 end
 
 function ENT:PhysicsUpdate(ph)
-	self:base("wac_hc_base").PhysicsUpdate(self,ph)
-	
+	self:base("wac_hc_base").PhysicsUpdate(self,ph)		
+		
 	local vel = ph:GetVelocity()	
 	local pos = self:GetPos()
 	local ri = self:GetRight()
@@ -81,54 +81,60 @@ function ENT:PhysicsUpdate(ph)
 	local ang = self:GetAngles()
 	local dvel = vel:Length()
 	local lvel = self:WorldToLocal(pos+vel)
-	local realism = 2
-	local pilot = self.Passenger[1]
-	if IsValid(pilot) then
-		realism = math.Clamp(tonumber(pilot:GetInfo("wac_cl_air_realism")), 1, 3)
-	end
-	local t = self:calcHover(ph,pos,vel,ang)
-	local rotateX = (self.controls.roll*1.5+t.r)*self.rotorRpm
-	local rotateY = (self.controls.pitch+t.p)*self.rotorRpm
+	local pilot = self.passengers[1]
+	local hover = self:calcHover(ph,pos,vel,ang)
+	
+	local rotateX = (self.controls.roll*1.5+hover.r)*self.rotorRpm
+	local rotateY = (self.controls.pitch+hover.p)*self.rotorRpm
 	local rotateZ = self.controls.yaw*1.5*self.rotorRpm
+	
 	--local phm = (wac.aircraft.cvars.doubleTick:GetBool() and 2 or 1)
 	local phm = FrameTime()*66
-	if self.TopRotor2 and self.topRotor2.Phys and self.topRotor2.Phys:IsValid() then
-		-- top rotor 2 physics
-		local rotor = {}
-		rotor.phys = self.topRotor2.Phys
-		rotor.angVel = rotor.phys:GetAngleVelocity()
-		rotor.upvel = self.topRotor2:WorldToLocal(self.topRotor2:GetVelocity()+self.topRotor2:GetPos()).z
-		rotor.brake =
-			math.Clamp(math.abs(rotor.angVel.z) - 2950, 0, 100)/10 -- RPM cap
-			+ math.pow(math.Clamp(1500 - math.abs(rotor.angVel.z), 0, 1500)/900, 3)
-			+ math.abs(rotor.angVel.z/10000)
-			- (rotor.upvel - self.rotorRpm)*self.controls.throttle/1000
-		rotor.targetAngVel =
-			Vector(0, 0, math.pow(self.engineRpm,2)*self.TopRotor2.dir*10)
-			- rotor.angVel*rotor.brake/200
-		rotor.phys:AddAngleVelocity(rotor.targetAngVel)
+	if self.UsePhysRotor then
+		if self.topRotor2 and self.topRotor2.Phys and self.topRotor2.Phys:IsValid() then
+			if self.RotorBlurModel then
+				self.topRotor2.vis:SetColor(Color(255,255,255,math.Clamp(1.3-self.rotorRpm,0.1,1)*255))
+			end
+				-- top rotor physics
+			local rotor = {}
+			rotor.phys = self.topRotor2.Phys
+			rotor.angVel = rotor.phys:GetAngleVelocity()
+			rotor.upvel = self.topRotor2:WorldToLocal(self.topRotor2:GetVelocity()+self.topRotor2:GetPos()).z
+			rotor.brake =
+				math.Clamp(math.abs(rotor.angVel.z) - 2950, 0, 100)/10 -- RPM cap
+				+ math.pow(math.Clamp(1500 - math.abs(rotor.angVel.z), 0, 1500)/900, 3)
+				+ math.abs(rotor.angVel.z/10000)
+				- (rotor.upvel - self.rotorRpm)*self.controls.throttle/1000
+				rotor.targetAngVel =
+				Vector(0, 0, math.pow(self.engineRpm,2)*self.TopRotor2.dir*10)
+				- rotor.angVel*rotor.brake/200
+				rotor.phys:AddAngleVelocity(rotor.targetAngVel)
+		end
+	end
+	self.LastPhys = CurTime()
+
+	if self.topRotor and IsValid(self.topRotor) and IsValid(self.topRotor.vis) then
+		if self.rotorRpm > 0.6 and self.rotorRpm < 0.79 then
+			self.topRotor.vis:SetBodygroup(1,1)
+		elseif self.rotorRpm > 0.8 then
+			self.topRotor.vis:SetBodygroup(1,2)
+		elseif self.rotorRpm < 0.4 then
+			self.topRotor.vis:SetBodygroup(1,0)
+		end
 	end
 	
-	if self.rotorRpm > 0.6 and self.rotorRpm < 0.79 and IsValid(self.topRotor.vis) then
-		self.topRotor.vis:SetBodygroup(1,1)
-	elseif self.rotorRpm > 0.8 and IsValid(self.topRotor.vis) then
-		self.topRotor.vis:SetBodygroup(1,2)
-	elseif self.rotorRpm < 0.4 and IsValid(self.topRotor.vis) then
-		self.topRotor.vis:SetBodygroup(1,0)
-	end
-
-	if self.rotorRpm > 0.6 and self.rotorRpm < 0.79 and IsValid(self.topRotor2.vis) then
-		self.topRotor2.vis:SetBodygroup(1,1)
-	elseif self.rotorRpm > 0.8 and IsValid(self.topRotor2.vis) then
-		self.topRotor2.vis:SetBodygroup(1,2)
-	elseif self.rotorRpm < 0.4 and IsValid(self.topRotor2.vis) then
-		self.topRotor2.vis:SetBodygroup(1,0)
+	if self.topRotor2 and IsValid(self.topRotor2) and IsValid(self.topRotor2.vis) then
+		if self.rotorRpm > 0.6 and self.rotorRpm < 0.79 then
+			self.topRotor2.vis:SetBodygroup(1,1)
+		elseif self.rotorRpm > 0.8 then
+			self.topRotor2.vis:SetBodygroup(1,2)
+		elseif self.rotorRpm < 0.4 then
+			self.topRotor2.vis:SetBodygroup(1,0)
+		end
 	end
 end
 
 function ENT:KillTopRotor()
-	self:base("wac_hc_base").KillTopRotor(self)
-	
 	if !self.TopRotor2 then return end
 	local e = self:addEntity("prop_physics")
 	e:SetPos(self.topRotor2:GetPos())
@@ -141,7 +147,7 @@ function ENT:KillTopRotor()
 	if ph:IsValid() then
 		ph:SetMass(1000)
 		ph:EnableDrag(false)
-		ph:AddAngleVelocity(self.TopRotor2.Phys:GetAngleVelocity())
+		ph:AddAngleVelocity(self.topRotor2.Phys:GetAngleVelocity())
 		ph:SetVelocity(self.topRotor2.Phys:GetAngleVelocity():Length()*self.topRotor2:GetUp()*0.5 + self.topRotor2:GetVelocity())
 	end
 	self.topRotor2:Remove()
@@ -151,4 +157,6 @@ function ENT:KillTopRotor()
 		if !e or !e:IsValid() then return end
 		e:Remove()
 	end)
+	
+	self:base("wac_hc_base").KillTopRotor(self)
 end

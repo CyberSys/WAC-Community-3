@@ -16,7 +16,7 @@ end
 function ENT:PhysicsUpdate(ph)
 	self:base("wac_hc_base").PhysicsUpdate(self,ph)
 	
-	if IsValid(self.topRotor.vis) then
+	if self.topRotor and IsValid(self.topRotor.vis) then
 		if self.rotorRpm > 0.4 and self.rotorRpm < 0.59 then
 			self.topRotor.vis:SetBodygroup(1,1)
 		end
