@@ -41,6 +41,7 @@ ENT.Seats = {
 	{
 		pos=Vector(165, -24, 68),
 		exit=Vector(160,-70,40),
+		weapons={"GAU-17"}
 	},
 	{
 		pos=Vector(25, 28, 60),
@@ -72,6 +73,52 @@ ENT.Seats = {
 		exit=Vector(-320,0,10),
 		ang=Angle(0,90,0),
 	},
+}
+
+ENT.Weapons = {
+	["GAU-17"] = {
+		class = "wac_pod_aimedgun",
+		info = {
+			ShootPos = Vector(-15,10,18),
+			ShootOffset = Vector(30, 0, 0),
+		}
+	},
+}
+
+ENT.WeaponAttachments={
+
+	gunMount1 = {
+		model = "models/sentry/osprey_gun1.mdl",
+		pos = Vector(-15,0,25),
+		restrictPitch = true
+	},
+	
+	gunMount2 = {
+		model = "models/sentry/osprey_gun2.mdl",
+		pos = Vector(-15,10,18),
+	},
+	
+	gun = {
+		model = "models/sentry/osprey_barrel.mdl",
+		pos = Vector(-15,10,18),
+	},
+	
+	radar1 = {
+		model = "models/props_junk/PopCan01a.mdl",
+		pos = Vector(60,0,25),
+		restrictPitch = true
+	},
+	
+}
+
+ENT.Camera = {
+	model = "models/props_junk/PopCan01a.mdl",
+	pos = Vector(60,0,25),
+	offset = Vector(-1,0,0),
+	viewPos = Vector(10, 0, -10),
+	maxAng = Angle(45, 90, 0),
+	minAng = Angle(-2, -90, 0),
+	seat = 2
 }
 
 ENT.Sounds={
