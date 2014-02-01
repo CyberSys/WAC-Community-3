@@ -24,7 +24,6 @@ function ENT:Initialize()
 	self:base("wac_hc_base").Initialize(self)
 	self.Value=0
 	self.TargetValue=0
-	
 end
 
 
@@ -33,15 +32,16 @@ end
 function ENT:PhysicsUpdate(ph)
 	self:base("wac_hc_base").PhysicsUpdate(self,ph)
 	
-	
-		if self:GetNWInt("seat_2_actwep") == 1 or self:GetNWInt("seat_1_actwep") == 1 then
+	if self:GetNWInt("seat_2_actwep") == 1 or self:GetNWInt("seat_1_actwep") == 1 then
 		self.TargetValue=1
-		else
+	else
 		self.TargetValue=0
 	end
 	
-	self.Value = Lerp( 0.015, self.Value, self.TargetValue)
-	self:SetPoseParameter("weapons",self.Value)
+	if not (self.Value==self.TargetValue) then
+		self.Value = Lerp( 0.015, self.Value, self.TargetValue)
+		self:SetPoseParameter("weapons",self.Value)
+	end
 	
 	
 	local geardown,t1=self:LookupSequence("geardown")

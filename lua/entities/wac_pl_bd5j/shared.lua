@@ -5,7 +5,7 @@ ENT.Type 				= "anim"
 
 ENT.PrintName			= "BD-5J Micro Jet"
 ENT.Author				= "Dr. Matt"
-ENT.Category			= wac.aircraft.spawnCategory
+ENT.Category			= wac.aircraft.spawnCategoryC
 ENT.Contact    			= ""
 ENT.Purpose 			= ""
 ENT.Instructions 		= ""

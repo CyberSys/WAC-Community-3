@@ -2,7 +2,7 @@ if not wac then return end
 
 ENT.Base 				= "wac_hc_base"
 ENT.Type 				= "anim"
-ENT.Category			= wac.aircraft.spawnCategory
+ENT.Category			= wac.aircraft.spawnCategoryC
 ENT.PrintName			= "Bell OH-58D Kiowa"
 ENT.Author				= "}{ornet/Vest"
 ENT.Spawnable			= true

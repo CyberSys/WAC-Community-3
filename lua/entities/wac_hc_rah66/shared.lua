@@ -2,7 +2,7 @@
 ENT.Base = "wac_hc_base"
 ENT.Type = "anim"
 ENT.Author = wac.author
-ENT.Category = wac.aircraft.spawnCategory
+ENT.Category = wac.aircraft.spawnCategoryC
 ENT.Spawnable = true
 ENT.AdminSpawnable = true
 ENT.AutomaticFrameAdvance = true
@@ -97,8 +97,8 @@ ENT.Camera = {
 	pos = Vector(207,0,53),
 	offset = Vector(-1,0,0),
 	viewPos = Vector(10, 0, 5),
-	maxAng = Angle(15, 15, 0),
-	minAng = Angle(-7, -15, 0),
+	maxAng = Angle(90, 90, 0),
+	minAng = Angle(-15, -90, 0),
 	seat = 2
 }
 

@@ -4,7 +4,7 @@ ENT.Base 				= "wac_hc_base"
 ENT.Type 				= "anim"
 ENT.PrintName			= "KA-50 BlackShark"
 ENT.Author				= "SentryGunMan"
-ENT.Category			= wac.aircraft.spawnCategory
+ENT.Category			= wac.aircraft.spawnCategoryC
 ENT.Spawnable			= true
 ENT.AdminSpawnable		= true
 
